@@ -3,6 +3,7 @@
 puts "RePoNo 0.1"
 puts ""
 puts "Please enter a RPN calculation"
+puts "for example, 23 5 3 * - (returns '8')"
  
 input = gets.chomp
 stack = []
