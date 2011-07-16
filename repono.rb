@@ -36,6 +36,3 @@ if result == result.to_i
 else
   puts result
 end
-
-# stack.push(input.split)
-# puts stack.pop until stack.empty?
