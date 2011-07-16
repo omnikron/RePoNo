@@ -24,7 +24,7 @@ end
 input.split.each do |element|
   if element =~ /^\d*$/
     stack.push(element.to_f)
-	else
+  else
     operation_result = operate(stack.pop(2), element)
     stack.push(operation_result)
   end
