@@ -5,15 +5,7 @@ class String
   end
 
   def evaluate_postfix
-    self.split(RPNCalculator::SEPARATOR).inject([]) do |memo, element|
-      operand = 
-        if element =~ RPNCalculator::OPERAND
-          element.to_f
-        else
-          RPNCalculator::Operations.operate(memo.pop(2), element)
-        end
-      memo.push(operand)
-    end.first
+    RPNCalculator::Stack.new.evaluate(self)
   end
 
   def to_postfix
