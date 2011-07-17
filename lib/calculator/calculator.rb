@@ -4,7 +4,21 @@ module RPNCalculator
   OPERAND   = /^(\d+.\d+|\d*)$/
   ERROR_MESSAGE = 'Invalid postfix notation'
 
-  class Stack < Array
+  class Eval < Array
+    class << self
+      def [](string)
+        stack = string.split(SEPARATOR).inject(new) do |memo, element|
+          memo.push(element)
+        end
+        stack.size == 1 && stack.first || raise(ERROR_MESSAGE)
+      end
+
+      def postfix?(string)
+        # TO DO: this expression needs to be corrected
+        !! (string =~ /^(\d+.\d+|\d*)\s(\d+.\d+|\d*)\s((\d+.\d+|\d*)\s|[+\-*\/^]\s)+$/)
+      end
+    end
+
     def pop(count = 1)
       subset = super(count)
       if subset.size < count
@@ -22,13 +36,6 @@ module RPNCalculator
       end
     end
 
-    def evaluate(string)
-      string.split(SEPARATOR).each do |element|
-        push(element)
-      end
-      size == 1 && first || raise(ERROR_MESSAGE)
-    end
-
     private
 
     def operate(operands, operator)
@@ -41,6 +48,8 @@ module RPNCalculator
           operands.first / operands.last
         when '*'
           operands.first * operands.last
+        when '^'
+          operands.first ** operands.last
         else
           raise 'COMPUTERIZING ERROR, SILLY INPUT'
       end

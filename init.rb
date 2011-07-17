@@ -1,4 +1,4 @@
-Dir["#{File.dirname(__FILE__)}/**/*.rb"].each do |file|
+Dir["#{File.dirname(__FILE__)}/lib/**/*.rb"].each do |file|
   require file
 end
 
