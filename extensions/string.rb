@@ -1,10 +1,10 @@
 class String
-  def reverse_polish_notation?
+  def postfix?
     # TO DO: this expression needs to be corrected
     !! self =~ /^(\d+.\d+|\d*)\s(\d+.\d+|\d*)\s((\d+.\d+|\d*)\s|[+\-*\/^]\s)*$/
   end
 
-  def reverse_polish_notation_evaluate
+  def evaluate_postfix
     self.split(RPNCalculator::SEPARATOR).inject([]) do |memo, element|
       operand = 
         if element =~ RPNCalculator::OPERAND
@@ -16,10 +16,10 @@ class String
     end.first
   end
 
-  def to_reverse_polish_notation
+  def to_postfix
   end
 
-  def to_infix_notation
+  def to_infix
   end
 end
 
