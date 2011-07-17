@@ -14,15 +14,6 @@ module RPNCalculator
       end
     end
 
-    def pop(count = 1)
-      subset = super(count)
-      if subset.size < count
-        raise ERROR_MESSAGE
-      else
-        subset
-      end
-    end
-
     def push(element)
       if element =~ OPERAND
         super(element.to_f)
@@ -32,6 +23,15 @@ module RPNCalculator
     end
 
     private
+
+    def pop(count = 1)
+      subset = super(count)
+      if subset.size < count
+        raise ERROR_MESSAGE
+      else
+        subset
+      end
+    end
 
     def operate(operands, operator)
       case operator
