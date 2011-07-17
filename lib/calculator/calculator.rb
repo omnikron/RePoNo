@@ -1,7 +1,7 @@
 module RPNCalculator
-  SEPARATOR = /\s/
-  OPERATOR  = /[+\-*\/^]/
-  OPERAND   = /^(\d+.\d+|\d*)$/
+  SEPARATOR     = /\s/
+  OPERATOR      = /[+\-*\/^]/
+  OPERAND       = /^[+-]?(\d+.\d+|\d+)+$/
   ERROR_MESSAGE = 'Invalid postfix notation'
 
   class Eval < Array
@@ -11,11 +11,6 @@ module RPNCalculator
           memo.push(element)
         end
         stack.size == 1 && stack.first || raise(ERROR_MESSAGE)
-      end
-
-      def postfix?(string)
-        # TO DO: this expression needs to be corrected
-        !! (string =~ /^(\d+.\d+|\d*)\s(\d+.\d+|\d*)\s((\d+.\d+|\d*)\s|[+\-*\/^]\s)+$/)
       end
     end
 
@@ -56,4 +51,3 @@ module RPNCalculator
     end
   end
 end
-
