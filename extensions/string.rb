@@ -1,12 +1,13 @@
 class String
   def reverse_polish_notation?
-    !! self =~ /^\d/
+    # TO DO: this expression needs to be corrected
+    !! self =~ /^(\d+.\d+|\d*)\s(\d+.\d+|\d*)\s((\d+.\d+|\d*)\s|[+\-*\/^]\s)*$/
   end
 
   def reverse_polish_notation_evaluate
-    self.split(RPNCalculator::SPLIT_BY).inject([]) do |memo, element|
+    self.split(RPNCalculator::SEPARATOR).inject([]) do |memo, element|
       operand = 
-        if element =~ /^(\d+.\d+|\d*)$/
+        if element =~ RPNCalculator::OPERAND
           element.to_f
         else
           RPNCalculator::Operations.operate(memo.pop(2), element)

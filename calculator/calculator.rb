@@ -1,6 +1,7 @@
 module RPNCalculator
-  SPLIT_BY  = ' '
-  OPERATORS = %w(+ - * / ^ !)
+  SEPARATOR = /\s/
+  OPERATOR  = /[+\-*\/^]/
+  OPERAND   = /^(\d+.\d+|\d*)$/
 
   class Operations
     def self.operate(operands, operator)
